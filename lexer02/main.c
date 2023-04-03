@@ -21,8 +21,10 @@ int potencia (int casa, char prox){
 		return casa + 1;
 	} 
 	else {
-		return casa - 1;
+		printf(" Vezes \n");
+		return casa;
 	}
+	
 }
 
 void lexer(FILE *string){
@@ -52,7 +54,7 @@ void lexer(FILE *string){
 				printf(" Menos \n");
 				break;
 			case '*':
-				i = potencia(i+1, texto[i+1]);
+				i = potencia(i, texto[i+1]);
 				break;
 			case '/':
 				printf(" Divisão \n");	
