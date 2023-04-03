@@ -15,6 +15,8 @@ typedef struct {
 	char valor;
 }caracteres;
 
+
+
 int potencia (int casa, char prox){
 
 	if (prox == '*'){
@@ -28,17 +30,49 @@ int potencia (int casa, char prox){
 	
 }
 
-
-
-void leNum(char caractere) {
+int leNum(char caractere, char prox, char pprox, char ppprox, int casa) {
+	
 	int numero;
+	int i = casa;
+	
     if (isdigit(caractere)) {
         // Se o caractere é um dígito, converte para inteiro e imprime na tela
         numero = caractere - '0';
         printf(" %d\n", numero);
+
+			// if(prox == '.'){
+			// 	printf(" .");
+			// 	i = leNum(pprox, ppprox, "", "", i+1);
+			// 	return 0;
+			// }
     }
+
+	return i;
 }
 
+
+// int verificaProximo(int casa, char prox, char pprox){
+// 	char c = prox;
+// 	int a = c - '0';
+	
+// 	if (prox != '.') {
+// 		return 1;
+// 	} 
+// 	else if (isdigit(a)){
+// 		printf(".");
+// 		leNum(pprox);
+// 		return casa;
+// 	}
+// 	else return 0;
+// }
+
+int verificaNum (char valor, char prox, char pprox){
+
+	int casa;
+
+
+	return casa;
+}
 
 
 void lexer(FILE *string){
@@ -56,7 +90,6 @@ void lexer(FILE *string){
 
 	for (int i = 0; i < count; i++){
 		texto[i] = fgetc(string);
-		leNum(texto[i]);
 	}	
 
 	for (int i = 0; i < count; i++){
@@ -74,6 +107,36 @@ void lexer(FILE *string){
 				printf(" Divisão \n");	
 				break;
 			case ' ':
+				break;
+			case '1':
+				i = leNum(texto[i], texto[i+1], texto[i+2], texto[i+3],i);	
+				break;
+			case '2':
+				i = leNum(texto[i], texto[i+1], texto[i+2], texto[i+3],i);	
+				break;
+			case '3':
+				i = leNum(texto[i], texto[i+1], texto[i+2], texto[i+3],i);	
+				break;
+			case '4':
+				i = leNum(texto[i], texto[i+1], texto[i+2], texto[i+3],i);	
+				break;
+			case '5':
+				i = leNum(texto[i], texto[i+1], texto[i+2], texto[i+3],i);	
+				break;
+			case '6':
+				i = leNum(texto[i], texto[i+1], texto[i+2], texto[i+3],i);	
+				break;
+			case '7':
+				i = leNum(texto[i], texto[i+1], texto[i+2], texto[i+3],i);	
+				break;
+			case '8':
+				i = leNum(texto[i], texto[i+1], texto[i+2], texto[i+3],i);	
+				break;
+			case '9':
+				i = leNum(texto[i], texto[i+1], texto[i+2], texto[i+3],i);	
+				break;
+			case '0':
+				i = leNum(texto[i], texto[i+1], texto[i+2], texto[i+3],i);	
 				break;
 			default:
 				printf(" Indeterminado ' %c '\n", texto[i]);
