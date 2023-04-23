@@ -4,10 +4,10 @@
 #include <ctype.h>
 
 enum token {
-	Mais,
-	Menos,
-	Vezes,
-	Divisão
+	Mais = '+',
+	Menos = '-',
+	Vezes = '*',
+	Divisão = '/'
 }tokens;
 
 typedef struct {
@@ -20,59 +20,16 @@ typedef struct {
 int potencia (int casa, char prox){
 
 	if (prox == '*'){
-		printf(" Potência \n");
+		printf("Potência \n");
 		return casa + 1;
 	} 
 	else {
-		printf(" Vezes \n");
+		printf("Vezes \n");
 		return casa;
 	}
 	
 }
 
-int leNum(char caractere, char prox, char pprox, char ppprox, int casa) {
-	
-	int numero;
-	int i = casa;
-	
-    if (isdigit(caractere)) {
-        // Se o caractere é um dígito, converte para inteiro e imprime na tela
-        numero = caractere - '0';
-        printf(" %d\n", numero);
-
-			// if(prox == '.'){
-			// 	printf(" .");
-			// 	i = leNum(pprox, ppprox, "", "", i+1);
-			// 	return 0;
-			// }
-    }
-
-	return i;
-}
-
-
-// int verificaProximo(int casa, char prox, char pprox){
-// 	char c = prox;
-// 	int a = c - '0';
-	
-// 	if (prox != '.') {
-// 		return 1;
-// 	} 
-// 	else if (isdigit(a)){
-// 		printf(".");
-// 		leNum(pprox);
-// 		return casa;
-// 	}
-// 	else return 0;
-// }
-
-int verificaNum (char valor, char prox, char pprox){
-
-	int casa;
-
-
-	return casa;
-}
 
 
 void lexer(FILE *string){
@@ -94,56 +51,73 @@ void lexer(FILE *string){
 
 	for (int i = 0; i < count; i++){
 		switch(texto[i]) {
-			case '+':
-				printf(" Mais \n"); 
+			case Mais:
+				printf("Mais \n"); 
 				break;
-			case '-':
-				printf(" Menos \n");
+			case Menos:
+				printf("Menos \n");
 				break;
-			case '*':
+			case Vezes:
 				i = potencia(i, texto[i+1]);
 				break;
-			case '/':
-				printf(" Divisão \n");	
+			case Divisão:
+				printf("Divisão \n");	
 				break;
 			case ' ':
 				break;
-			case '1':
-				i = leNum(texto[i], texto[i+1], texto[i+2], texto[i+3],i);	
-				break;
-			case '2':
-				i = leNum(texto[i], texto[i+1], texto[i+2], texto[i+3],i);	
-				break;
-			case '3':
-				i = leNum(texto[i], texto[i+1], texto[i+2], texto[i+3],i);	
-				break;
-			case '4':
-				i = leNum(texto[i], texto[i+1], texto[i+2], texto[i+3],i);	
-				break;
-			case '5':
-				i = leNum(texto[i], texto[i+1], texto[i+2], texto[i+3],i);	
-				break;
-			case '6':
-				i = leNum(texto[i], texto[i+1], texto[i+2], texto[i+3],i);	
-				break;
-			case '7':
-				i = leNum(texto[i], texto[i+1], texto[i+2], texto[i+3],i);	
-				break;
-			case '8':
-				i = leNum(texto[i], texto[i+1], texto[i+2], texto[i+3],i);	
-				break;
-			case '9':
-				i = leNum(texto[i], texto[i+1], texto[i+2], texto[i+3],i);	
-				break;
-			case '0':
-				i = leNum(texto[i], texto[i+1], texto[i+2], texto[i+3],i);	
+			case '\n':
 				break;
 			default:
-				printf(" Indeterminado ' %c '\n", texto[i]);
+				if (isdigit(texto[i])){
+					
+					char numero[61];
+					int c = 0;
+					int pontos = 0;
+					
+					
+					while(pontos != 2){
+						
+						if(isdigit(texto[i])){
+							numero[c] = texto[i];
+							c++;	
+						}
+						else if (texto[i] == '.' && pontos == 0){
+							if(isdigit(texto[i+1])){
+								numero[c] = texto[i];
+								pontos++;
+								c++;
+							}
+							else{
+								pontos = 2;
+							}
+						}
+						else if (texto[i] == '.' && pontos == 1){
+							
+							pontos = 2;
+						}
+						else {
+							pontos = 2;
+						}
+						i++;
+					}
+					
+					for (int j = 0; j < c; j++){
+						printf("%c", numero[j]);
+					}
+					
+					i = i-2;
+					break;
+				}	
+				printf("\n");
+				printf("Indeterminado ' %c '\n", texto[i]);
 				break;
 		}
+		printf("\n");
 	}
+	free(texto);
 }
+
+
 
 int main(int numargs, char *arg[]) {
 
