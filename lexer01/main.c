@@ -51,7 +51,9 @@ void lexer(FILE *string){
 				printf(" Indeterminado ' %c '\n", texto[i]);
 				break;
 		}
+
 	}
+	
 }
 int main(int numargs, char *arg[]) {
 
