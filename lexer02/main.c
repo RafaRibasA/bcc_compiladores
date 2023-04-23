@@ -24,7 +24,6 @@ int potencia (int casa, char prox){
 		printf(" Vezes \n");
 		return casa;
 	}
-	
 }
 
 void lexer(FILE *string){
@@ -65,9 +64,7 @@ void lexer(FILE *string){
 				printf(" Indeterminado ' %c '\n", texto[i]);
 				break;
 		}
-
 	}
-	
 }
 
 int main(int numargs, char *arg[]) {
